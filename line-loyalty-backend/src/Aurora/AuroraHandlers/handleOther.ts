@@ -50,26 +50,26 @@ export async function handleOther(
           title: 'บริจาคเงินช่วยเหลือน้ำท่วม',
           imageUrl: ``,
           location: 'หมวดหมู่: น้ำท่วม',
-          url: `${BASE_URL}/assets/images/demo-image.svg`,
+          url: `${BASE_URL}/assets/images/demo-image.png`,
         },
         {
           title: 'บริจาคเงินช่วยเหลือเด็กๆ',
           imageUrl: ``,
           location: 'หมวดหมู่: ช่วยเหลือเด็กๆ',
-          url: `${BASE_URL}/assets/images/demo-image.svg`,
+          url: `${BASE_URL}/assets/images/demo-image.png`,
         },
         {
           title: 'บริจาคอื่นๆ',
-          imageUrl: `${BASE_URL}/assets/images/demo-image.svg`,
+          imageUrl: `${BASE_URL}/assets/images/demo-image.png`,
           location: 'หมวดหมู่: อื่นๆ',
-          url: `${BASE_URL}/assets/images/demo-image.svg`,
+          url: `${BASE_URL}/assets/images/demo-image.png`,
         },
       ]);
       await client.replyMessage(replyToken, [
         {
           type: 'image',
-          originalContentUrl: `${BASE_URL}/assets/images/demo-image.svg`,
-          previewImageUrl: `${BASE_URL}/assets/images/demo-image.svg`,
+          originalContentUrl: `${BASE_URL}/assets/images/demo-image.png`,
+          previewImageUrl: `${BASE_URL}/assets/images/demo-image.png`,
         },
         {
           type: 'text',

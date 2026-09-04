@@ -12,8 +12,8 @@ export async function handleServiceCenter(
     case 'ศูนย์บริการใกล้ฉัน': {
       const imageMsg: ImageMessage = {
         type: 'image',
-        originalContentUrl: `${BASE_URL}/assets/images/demo-image.svg`,
-        previewImageUrl: `${BASE_URL}/assets/images/demo-image.svg`,
+        originalContentUrl: `${BASE_URL}/assets/images/demo-image.png`,
+        previewImageUrl: `${BASE_URL}/assets/images/demo-image.png`,
       };
 
       const textMsg: TextMessage = {

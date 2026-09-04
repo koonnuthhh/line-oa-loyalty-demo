@@ -19,13 +19,13 @@ export async function handleCheckLicenseNum(
     },
     {
       type: 'image',
-      originalContentUrl: `${BASE_URL}/assets/images/demo-image.svg`,
-      previewImageUrl: `${BASE_URL}/assets/images/demo-image.svg`,
+      originalContentUrl: `${BASE_URL}/assets/images/demo-image.png`,
+      previewImageUrl: `${BASE_URL}/assets/images/demo-image.png`,
     },
     {
       type: 'image',
-      originalContentUrl: `${BASE_URL}/assets/images/demo-image.svg`,
-      previewImageUrl: `${BASE_URL}/assets/images/demo-image.svg`,
+      originalContentUrl: `${BASE_URL}/assets/images/demo-image.png`,
+      previewImageUrl: `${BASE_URL}/assets/images/demo-image.png`,
     },
   ]);
 
@@ -70,8 +70,8 @@ export async function handleRenewOrBuyInsurance(
       await client.replyMessage(replyToken, [
         {
           type: 'image',
-          originalContentUrl: `${BASE_URL}/assets/images/demo-image.svg`,
-          previewImageUrl: `${BASE_URL}/assets/images/demo-image.svg`,
+          originalContentUrl: `${BASE_URL}/assets/images/demo-image.png`,
+          previewImageUrl: `${BASE_URL}/assets/images/demo-image.png`,
         },
       ]);
       return;

@@ -20,8 +20,8 @@ export async function handleCustomerAccess(client: Client, replyToken: string, u
     await client.replyMessage(replyToken, [
     {
       type: 'image',
-      originalContentUrl: `${BASE_URL}/assets/images/demo-image.svg`,
-      previewImageUrl: `${BASE_URL}/assets/images/demo-image.svg`,
+      originalContentUrl: `${BASE_URL}/assets/images/demo-image.png`,
+      previewImageUrl: `${BASE_URL}/assets/images/demo-image.png`,
     },
     {
       type: 'text',

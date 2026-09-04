@@ -14,31 +14,31 @@ export async function productChooseOptions(
             const message = websiteCarouselFlexContent('ข้อมูลผลิตภัณฑ์', [
                 {
                     title: 'Verdant',
-                    imageUrl: `${BASE_URL}/assets/images/demo-image.svg`,
+                    imageUrl: `${BASE_URL}/assets/images/demo-image.png`,
                     location: 'หมวดหมู่: verdant',
                     url: '',
                 },
                 {
                     title: 'Verdantmoney',
-                    imageUrl: `${BASE_URL}/assets/images/demo-image.svg`,
+                    imageUrl: `${BASE_URL}/assets/images/demo-image.png`,
                     location: 'หมวดหมู่: verdantmoney',
                     url: '',
                 },
                 {
                     title: 'Cubhouse',
-                    imageUrl: `${BASE_URL}/assets/images/demo-image.svg`,
+                    imageUrl: `${BASE_URL}/assets/images/demo-image.png`,
                     location: 'หมวดหมู่: cubhouse',
                     url: '',
                 },
                 {
                     title: 'Bigwing',
-                    imageUrl: `${BASE_URL}/assets/images/demo-image.svg`,
+                    imageUrl: `${BASE_URL}/assets/images/demo-image.png`,
                     location: 'หมวดหมู่: bigwing',
                     url: '',
                 },
                 {
                     title: 'Myverdant',
-                    imageUrl: `${BASE_URL}/assets/images/demo-image.svg`,
+                    imageUrl: `${BASE_URL}/assets/images/demo-image.png`,
                     location: 'หมวดหมู่: myverdant',
                     url: '',
                 },

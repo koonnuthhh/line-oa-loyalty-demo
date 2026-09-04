@@ -12,8 +12,8 @@ export async function handleServiceCenter(
     case 'ตรอ. ใกล้ฉัน': {
       const imageMsg: ImageMessage = {
         type: 'image',
-        originalContentUrl: `${BASE_URL}/assets/images/demo-image.svg`,
-        previewImageUrl: `${BASE_URL}/assets/images/demo-image.svg`,
+        originalContentUrl: `${BASE_URL}/assets/images/demo-image.png`,
+        previewImageUrl: `${BASE_URL}/assets/images/demo-image.png`,
       };
 
       const textMsg: TextMessage = {
@@ -32,8 +32,8 @@ export async function handleServiceCenter(
       await client.replyMessage(replyToken, [
         {
           type: 'image',
-          originalContentUrl: `${BASE_URL}/assets/images/demo-image.svg`,
-          previewImageUrl: `${BASE_URL}/assets/images/demo-image.svg`,
+          originalContentUrl: `${BASE_URL}/assets/images/demo-image.png`,
+          previewImageUrl: `${BASE_URL}/assets/images/demo-image.png`,
         },
       ]);
       return true;

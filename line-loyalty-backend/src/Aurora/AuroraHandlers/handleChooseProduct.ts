@@ -78,7 +78,7 @@ export async function handleChooseProduct(
     }
     const items = product.map((item) => ({
         title: item.name,
-        imageUrl: encodeURI(item.imageUrl || `${BASE_URL}/assets/images/demo-image.svg`),
+        imageUrl: encodeURI(item.imageUrl || `${BASE_URL}/assets/images/demo-image.png`),
         location: ' ',
         url: encodeURI(item.description || ''),
     }));
