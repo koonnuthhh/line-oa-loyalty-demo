@@ -65,6 +65,14 @@ export class VerdantService {
         const replyToken = event.replyToken;
         const message = (event.message as TextMessage).text.trim();
 
+        // Welcome / help: show the available text commands (demo runs without a rich menu)
+        const HELP_KEYWORDS = ['help', 'menu', 'start', 'hi', 'hello', 'สวัสดี', 'เริ่ม', 'เริ่มต้น',
+            'เริ่มใช้', 'เมนู', 'คำสั่ง', 'ช่วยเหลือ'];
+        if (HELP_KEYWORDS.includes(message.toLowerCase())) {
+            await this.sendHelpMenu(replyToken);
+            return;
+        }
+
         // Try admin branch input handler first
         const handledAdmin = await handleAdminBranchInput(this.httpService, this.client, replyToken, userId, destination, message);
         if (handledAdmin) return;
@@ -88,10 +96,40 @@ export class VerdantService {
         );
         if (menuReplied) return;
 
-        await this.client.replyMessage(event.replyToken, {
+        // No keyword matched -> show the command list so the demo is self-explanatory
+        await this.sendHelpMenu(event.replyToken);
+    }
+
+    /** Welcome / help message listing the text commands the bot understands. */
+    private async sendHelpMenu(replyToken: string): Promise<void> {
+        const text = [
+            'ยินดีต้อนรับสู่ Verdant Demo Bot 🤖',
+            '',
+            'พิมพ์คำสั่งด้านล่างเพื่อเริ่มใช้งาน หรือแตะปุ่มได้เลย:',
+            '• ข้อมูลผลิตภัณฑ์ — ดูรายการผลิตภัณฑ์',
+            '• เช็คค่างวด — เช็คค่างวดรถยนต์',
+            '• ศูนย์บริการ/ตรอ. — ค้นหาศูนย์บริการ (แชร์ตำแหน่ง)',
+            '• งานทะเบียน/ประกัน/พรบ. — งานเอกสารและประกัน',
+            '• สิทธิพิเศษ/สมาชิก — โปรโมชันและสิทธิ์สมาชิก',
+            '• งานบริการอื่นๆ/ติดต่อสอบถาม — ติดต่อทีมงาน',
+            '',
+            'พิมพ์ help / เมนู ได้ทุกเมื่อเพื่อดูคำสั่งอีกครั้ง',
+        ].join('\n');
+
+        const quickReplyItems = [
+            { type: 'message', label: 'ข้อมูลผลิตภัณฑ์', text: 'ข้อมูลผลิตภัณฑ์' },
+            { type: 'message', label: 'เช็คค่างวด', text: 'เช็คค่างวด' },
+            { type: 'message', label: 'ศูนย์บริการ/ตรอ.', text: 'ศูนย์บริการ/ตรอ.' },
+            { type: 'message', label: 'สิทธิพิเศษ/สมาชิก', text: 'สิทธิพิเศษ/สมาชิก' },
+        ];
+
+        const payload: any = {
             type: 'text',
-            text: 'กรุณาเลือกคำสั่งในริชเมนู',
-        });
+            text,
+            quickReply: { items: quickReplyItems },
+        };
+
+        await this.client.replyMessage(replyToken, payload);
     }
 
 
