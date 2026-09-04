@@ -117,10 +117,10 @@ export class VerdantService {
         ].join('\n');
 
         const quickReplyItems = [
-            { type: 'message', label: 'ข้อมูลผลิตภัณฑ์', text: 'ข้อมูลผลิตภัณฑ์' },
-            { type: 'message', label: 'เช็คค่างวด', text: 'เช็คค่างวด' },
-            { type: 'message', label: 'ศูนย์บริการ/ตรอ.', text: 'ศูนย์บริการ/ตรอ.' },
-            { type: 'message', label: 'สิทธิพิเศษ/สมาชิก', text: 'สิทธิพิเศษ/สมาชิก' },
+            { type: 'action', action: { type: 'message', label: 'ข้อมูลผลิตภัณฑ์', text: 'ข้อมูลผลิตภัณฑ์' } },
+            { type: 'action', action: { type: 'message', label: 'เช็คค่างวด', text: 'เช็คค่างวด' } },
+            { type: 'action', action: { type: 'message', label: 'ศูนย์บริการ/ตรอ.', text: 'ศูนย์บริการ/ตรอ.' } },
+            { type: 'action', action: { type: 'message', label: 'สิทธิพิเศษ/สมาชิก', text: 'สิทธิพิเศษ/สมาชิก' } },
         ];
 
         const payload: any = {
