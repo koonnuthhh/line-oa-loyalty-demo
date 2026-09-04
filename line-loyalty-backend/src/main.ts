@@ -8,7 +8,15 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
-  app.use(bodyParser.json());
+  // Capture the raw request body: LINE webhook signature validation needs the
+  // exact bytes LINE signed, not the re-serialized JSON.
+  app.use(
+    bodyParser.json({
+      verify: (req: any, res, buf) => {
+        req.rawBody = buf;
+      },
+    }),
+  );
   app.enableCors();
 
   // ✅ Correctly resolves to root/views
