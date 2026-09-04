@@ -19,8 +19,8 @@ async function bootstrap() {
   );
   app.enableCors();
 
-  // ✅ Correctly resolves to root/views
-  app.setBaseViewsDir(join(__dirname, '..', 'views'));
+  // ✅ Correctly resolves to project root/views (works in ts-node dev AND compiled prod)
+  app.setBaseViewsDir(join(process.cwd(), 'views'));
   app.setViewEngine('ejs');
 
   await app.listen(process.env.PORT || 9876); 
