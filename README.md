@@ -70,6 +70,37 @@ Six LINE bots (one per automotive brand) share one backend and behave per-brand 
 
 ## 🚀 Running it locally
 
+**Zero-setup demo mode (no database server, recommended for showing the project):**
+
+```bash
+cd hotspot-backend
+cp .env.example .env        # optional; demo mode only needs DB_MODE
+DB_MODE=demo npm run start:dev     # Windows PowerShell: $env:DB_MODE="demo"; npm run start:dev
+# open http://localhost:3001/api  (Swagger UI)
+```
+
+In demo mode the app boots with an **in-memory SQLite database**, auto-creates the
+schema and seeds fictional rows — the real TypeORM queries run, just with no Postgres
+server and a clean reset on every restart.
+
+Try these from Swagger (`POST /hotspot/...`):
+
+```jsonc
+// check-admin -> { "isAdmin": true }
+{ "user": { "userId": "Udemoadmin1", "destination": "Udemolineoa1" } }
+
+// Request-wifi -> issues the next free credential (counter advances each call)
+{ "user": { "userId": "Udemocustomer1", "destination": "Udemolineoa1",
+            "branchId": "B1", "username": "demo-customer" },
+  "content": { "formattedDate": "09/05/2026 11:00" } }
+
+// Admin/getLogs  { "user": { "userId":"Udemoadmin1", "destination":"Udemolineoa1", "branchId":"all" },
+//                  "content": { "request": "usageLog" } }
+// Admin/resetWifi (same shape, "request": "resetWifi") resets usage counters.
+```
+
+Full stack with PostgreSQL (original configuration):
+
 ```bash
 # 1. env files (never commit real values)
 cd line-loyalty-backend && cp .env.example .env   # fill per-brand LINE channel credentials
@@ -82,6 +113,14 @@ docker compose up --build          # postgres + line-loyalty-backend + hotspot-b
 # 3. LINE webhook
 #    point each brand channel's webhook at https://<your-tunnel>/webhook (see per-backend README)
 ```
+
+### Hosting the hotspot demo on Render (free tier)
+
+- New Web Service from the GitHub repo; **Root Directory: `hotspot-backend`**
+- Build command: `npm run build` · Start command: `npm run start:prod`
+- Environment: `DB_MODE=demo` (no paid Postgres add-on needed — data is in-memory)
+- The app reads `process.env.PORT`, which Render injects automatically
+- Free instances sleep after ~15 min idle; the first request after sleep is slow (~30-50s cold start)
 
 - **Google Sheets sync is optional**: set `GOOGLE_SHEETS_KEY_FILE` to a service-account key path, otherwise the feature logs a warning and stays disabled.
 - Media assets were removed for privacy — the LIFF/UI references a neutral placeholder SVG. Add your own demo images under `public/assets/images/` to restore visuals.

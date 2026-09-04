@@ -28,7 +28,7 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document); // Swagger will be at /api
 
 
-  await app.listen(3001);
-  console.log(`🚀 Server is running on http://localhost:3001`);
+  await app.listen(process.env.PORT || 3001); // Render injects PORT
+  console.log(`🚀 Server is running on http://localhost:${process.env.PORT || 3001}`);
 }
 bootstrap();
