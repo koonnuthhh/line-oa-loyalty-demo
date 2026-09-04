@@ -2,8 +2,8 @@ import { Client, FlexMessage } from '@line/bot-sdk';
 import { BASE_URL } from 'config/baseUrl.config';
 import { zephyrdriveTest } from 'src/data/zephyrDrivetest';
 import { meridiandriveTest } from 'src/data/meridianDrivetest';
-import { vectordriveTest } from 'src/data/ืvectorDrivetest';
-import { nimbusdriveTest } from 'src/data/ืnimbusDrivetest';
+import { vectordriveTest } from 'src/data/vectorDrivetest';
+import { nimbusdriveTest } from 'src/data/nimbusDrivetest';
 import { getButtonOptionsFlexContent } from 'src/Utils/functions/flexMessage';
 import { replyFlex, replyText } from 'src/Utils/functions/replyFunction';
 

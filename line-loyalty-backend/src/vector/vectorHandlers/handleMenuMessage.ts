@@ -9,7 +9,7 @@ import { handleServiceCenter } from "./handleServiceCenter";
 import { airtable } from "config/airtable_nimbus.config";
 import { fetchAirtableImages } from "src/Utils/functions/getphoto";
 import { SessionService } from "src/Usersession/session.service";
-import { vectordriveTest } from "src/data/ืvectorDrivetest";
+import { vectordriveTest } from "src/data/vectorDrivetest";
 
 const client = new Client(lineConfig_VECTOR);
 
