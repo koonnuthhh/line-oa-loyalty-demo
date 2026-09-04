@@ -1,0 +1,15 @@
+# dependencies / build output
+node_modules/
+dist/
+
+# environment & secrets
+.env
+.env.local
+*.pem
+*service_account*.json
+Testdrive_sheet.json
+
+# logs & OS
+*.log
+.DS_Store
+Thumbs.db

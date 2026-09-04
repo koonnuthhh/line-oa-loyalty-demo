@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Wi-Fi Access</title>
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 30px;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    #container {
+      background: #fff;
+      border-radius: 10px;
+      padding: 25px;
+      max-width: 400px;
+      margin: 0 auto;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    #status {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    #wifi-result {
+      background: #eef9ee;
+      padding: 20px;
+      border-left: 5px solid #00c300;
+      border-radius: 8px;
+      white-space: pre-wrap;
+      font-size: 16px;
+      display: none;
+    }
+
+    .loading {
+      color: #555;
+    }
+
+    .success {
+      color: green;
+    }
+
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div id="status" class="loading">🔄 Initializing...</div>
+    <div id="wifi-result"></div>
+  </div>
+
+  <script>
+    const liffId = "<%= liffId %>";
+    const backendApiUrl = "<%= backendApiUrl %>";
+    const passedState = "<%= state %>";
+
+    let branchId = null, botId = null;
+
+    function parseState(state) {
+      const parts = state?.split('_');
+      if (parts?.length === 2) {
+        return {
+          branchId: parts[0]?.replace('branchId-', ''),
+          botId: parts[1]?.replace('botId-', '')
+        };
+      }
+      return null;
+    }
+
+    const parsed = parseState(passedState);
+    if (parsed) {
+      branchId = parsed.branchId;
+      botId = parsed.botId;
+      sessionStorage.setItem("branchId", branchId);
+      sessionStorage.setItem("botId", botId);
+    } else {
+      branchId = sessionStorage.getItem("branchId");
+      botId = sessionStorage.getItem("botId");
+    }
+
+    if (!branchId || !botId) {
+      document.getElementById("status").innerText = "❌ Missing branchId or botId.";
+      document.getElementById("status").className = "error";
+    } else {
+      initLiff();
+    }
+
+    async function initLiff() {
+      try {
+        await liff.init({ liffId });
+
+        if (!liff.isLoggedIn()) {
+          liff.login({ redirectUri: location.href });
+          return;
+        }
+
+        document.getElementById("status").innerText = "🔐 Requesting your Wi-Fi credentials...";
+        const profile = await liff.getProfile();
+
+        const payload = {
+          user: {
+            userId: profile.userId,
+            username: profile.displayName,
+            destination: botId,
+            branchId: branchId
+          },
+          content: {
+            formattedDate: new Date().toLocaleDateString('en-US')
+          }
+        };
+
+        const res = await fetch(backendApiUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+
+        const data = await res.json();
+
+        if (data) {
+          document.getElementById("status").innerText = "✅ Wi-Fi credentials retrieved successfully!";
+          document.getElementById("status").className = "success";
+          document.getElementById("wifi-result").style.display = "block";
+        } else {
+          document.getElementById("status").innerText = "❌ Failed to retrieve credentials.";
+          document.getElementById("status").className = "error";
+        }
+
+      } catch (err) {
+        console.error("❌ Error:", err);
+        document.getElementById("status").innerText = "⚠️ Error: " + err.message;
+        document.getElementById("status").className = "error";
+      }
+    }
+  </script>
+</body>
+</html>

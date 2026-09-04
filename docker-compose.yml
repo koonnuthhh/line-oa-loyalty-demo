@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  line-backend:
+    build: ./line-loyalty-backend
+    container_name: lab_line-backend
+    env_file:
+      - ./line-loyalty-backend/.env
+    ports:
+      - "9876:9876"
+    depends_on:
+      - postgres
+
+  hotspot-backend:
+    build: ./hotspot-backend
+    container_name: lab_hotspot-backend
+    env_file:
+      - ./hotspot-backend/.env
+    ports:
+      - "3001:3001"
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:15
+    container_name: lab_postgres
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: LineOA_Hotspot
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres_dev_password
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./Database:/docker-entrypoint-initdb.d/
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  pgdata:
