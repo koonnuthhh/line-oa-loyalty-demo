@@ -15,6 +15,7 @@ import {
 
 import { HotspotModule } from './hotspot/hotspot.module'; // Your custom module
 import { DemoSeedService } from './demo-seed.service';
+import { HealthController } from './health.controller';
 
 const ENTITIES = [
   Log,
@@ -55,6 +56,7 @@ const isDemoMode = process.env.DB_MODE === 'demo';
     TypeOrmModule.forFeature(ENTITIES),
     HotspotModule,
   ],
+  controllers: [HealthController],
   providers: [DemoSeedService],
 })
 export class AppModule {}

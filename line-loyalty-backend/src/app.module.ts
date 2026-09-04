@@ -16,6 +16,7 @@ import { VectorModule } from './vector/vector.module';
 import { ConfigModule } from '@nestjs/config';
 import { VerdantService } from './verdant/verdant.service';
 import { LiffModule } from './liff/liff.module';
+import { HealthController } from './health.controller';
 // Add this line to print the resolved static path when app starts
 console.log('Static rootPath:', join(__dirname, '..', 'public'));
 
@@ -36,5 +37,6 @@ console.log('Static rootPath:', join(__dirname, '..', 'public'));
     VectorModule,
     LiffModule,
   ],
+  controllers: [HealthController],
 })
 export class AppModule {}
