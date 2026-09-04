@@ -13,34 +13,34 @@ export async function productChooseOptions(
         case 'ดูข้อมูลผลิตภัณฑ์': {
             const message = websiteCarouselFlexContent('ข้อมูลผลิตภัณฑ์', [
                 {
-                    title: 'Verdant',
+                    title: 'Verdant Motors',
                     imageUrl: `${BASE_URL}/assets/images/demo-image.png`,
-                    location: 'หมวดหมู่: verdant',
-                    url: '',
+                    location: 'หมวดหมู่: รถยนต์ใหม่',
+                    url: 'https://example.com',
                 },
                 {
-                    title: 'Verdantmoney',
+                    title: 'Verdant Financial',
                     imageUrl: `${BASE_URL}/assets/images/demo-image.png`,
-                    location: 'หมวดหมู่: verdantmoney',
-                    url: '',
+                    location: 'หมวดหมู่: สินเชื่อ',
+                    url: 'https://example.com',
                 },
                 {
-                    title: 'Cubhouse',
+                    title: 'Verdant Insurance',
                     imageUrl: `${BASE_URL}/assets/images/demo-image.png`,
-                    location: 'หมวดหมู่: cubhouse',
-                    url: '',
+                    location: 'หมวดหมู่: ประกันภัย',
+                    url: 'https://example.com',
                 },
                 {
-                    title: 'Bigwing',
+                    title: 'Verdant Moto',
                     imageUrl: `${BASE_URL}/assets/images/demo-image.png`,
-                    location: 'หมวดหมู่: bigwing',
-                    url: '',
+                    location: 'หมวดหมู่: รถจักรยานยนต์',
+                    url: 'https://example.com',
                 },
                 {
-                    title: 'Myverdant',
+                    title: 'Verdant Service',
                     imageUrl: `${BASE_URL}/assets/images/demo-image.png`,
-                    location: 'หมวดหมู่: myverdant',
-                    url: '',
+                    location: 'หมวดหมู่: บริการหลังการขาย',
+                    url: 'https://example.com',
                 },
             ]);
             await client.replyMessage(replyToken, message);
