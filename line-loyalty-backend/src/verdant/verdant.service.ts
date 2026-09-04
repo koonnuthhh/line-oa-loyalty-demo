@@ -43,6 +43,9 @@ export class VerdantService {
                 } else if (event.message.type === 'location') {
                     await this.handleLocationEvent(event);
                 }
+            } else if (event.type === 'follow') {
+                // ข้อความทักทายเพื่อนใหม่: auto-guide demo commands when someone adds the bot
+                await this.sendHelpMenu(event.replyToken);
             } else if (event.type === 'postback') {
                 await this.handlePostbackEvent(this.client, event, destination);
             }
